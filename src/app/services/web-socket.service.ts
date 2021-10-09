@@ -1,4 +1,6 @@
+import { HttpClient, HttpClientModule,HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ChatComponent } from '../chat/chat.component';
 import { ChatMessageDto } from '../models/chatModelsDto';
 
 @Injectable({
@@ -6,31 +8,17 @@ import { ChatMessageDto } from '../models/chatModelsDto';
 })
 export class WebSocketService {
 
-  webSocket!: WebSocket;
-  chatMessages: ChatMessageDto[] = [];
-  constructor() { }
+  constructor(private http: HttpClient) {
 
-  public openWebSocket() {
-    this.webSocket = new WebSocket('ws://localhost:8080/chat');
-    this.webSocket.onopen = (event) => {
-      console.log('Open', event)
-    };
+   }
 
-    this.webSocket.onmessage = (event) => {
-      const chatMessageDto = JSON.parse(event.data);
-      this.chatMessages.push(chatMessageDto);
-    }
+  sendMessage(chatMessageDto: ChatMessageDto) {
+    alert(JSON.stringify(chatMessageDto));
 
-    this.webSocket.onclose = (event) => {
-      console.log('Close', event); 
-    }
+    const myHeaders = new HttpHeaders().set("Access-Control-Allow-Origin", "*");
+    return this.http.post('http://localhost:8080/chat', JSON.stringify(chatMessageDto), {headers:myHeaders});
+
   }
 
-  public sendMessage(chatMessageDto: ChatMessageDto){
-    this.webSocket.send(JSON.stringify(chatMessageDto));
-  }
-
-  public closeWebSocket() {
-    this.webSocket.close();
-  }
+  
 }
