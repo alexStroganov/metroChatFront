@@ -4,6 +4,7 @@ import { interval, Observable } from 'rxjs';
 import { ChatComponent } from '../chat/chat.component';
 import { ChatMessageDto } from '../models/chatModelsDto';
 import { mergeMap } from 'rxjs/operators';
+import { NgForm } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -23,8 +24,6 @@ export class WebSocketService {
   }
   
   sendMessage(chatMessageDto: ChatMessageDto) {
-    alert(JSON.stringify(chatMessageDto));
-    //this.chatMessages.push(chatMessageDto);
     const myHeaders = new HttpHeaders().set('Content-Type' , 'application/json;charset=utf8');
     return this.http.post('http://localhost:8080/chat', JSON.stringify(chatMessageDto), {headers:myHeaders});
 

@@ -9,7 +9,7 @@ import { WebSocketService } from '../services/web-socket.service';
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit, OnDestroy {
-  
+
   chatMessages: any[] = [];
   constructor(public webSocketService: WebSocketService) { }
 
@@ -26,14 +26,10 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   sendMessage(sendForm: NgForm) {
-    // const chatMessageDto = ChatMessageDto(1 ,sendForm.value.message, 1);
 
-    const chatMessageDto = {sender_id: sendForm.value.sender_id, message: sendForm.value.message, lineId: 1};
+    const chatMessageDto = {createdat: "", sender_id: sendForm.value.sender_id, message: sendForm.value.message, lineId: 1, userName: ""};
     this.webSocketService.sendMessage(chatMessageDto).subscribe(x => console.log(x));
-    //this.webSocketService.showMessages().subscribe(data => {
-     // console.log(data);
-
-  //});
+    
     sendForm.controls.message.reset();
   }
 }
