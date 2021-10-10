@@ -8,13 +8,18 @@ import { ChatMessageDto } from '../models/chatModelsDto';
 })
 export class WebSocketService {
 
+  chatMessages: ChatMessageDto[] = [];
   constructor(private http: HttpClient) {
 
    }
 
+  showMessages() {
+    
+  }
+  
   sendMessage(chatMessageDto: ChatMessageDto) {
     alert(JSON.stringify(chatMessageDto));
-
+    this.chatMessages.push(chatMessageDto);
     const myHeaders = new HttpHeaders().set('Content-Type' , 'application/json;charset=utf8');
     return this.http.post('http://localhost:8080/chat', JSON.stringify(chatMessageDto), {headers:myHeaders});
 

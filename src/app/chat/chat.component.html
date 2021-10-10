@@ -10,9 +10,9 @@
         <div class="chat-content">
             <div class="card">
                  <ul class="list-group list-group-flush">
-                     <li class="list-group-item">
-                        <strong></strong>
-                        <span></span>
+                    <li class="list-group-item" *ngFor="let chatMessage of webSocketService.chatMessages">
+                        <strong>{{chatMessage.sender_id}}</strong>
+                        <span>{{chatMessage.message}}</span>
                      </li> 
                  </ul>
             </div>
