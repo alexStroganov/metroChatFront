@@ -11,7 +11,7 @@
             <div class="card">
                  <ul class="list-group list-group-flush">
                     <li class="list-group-item" *ngFor="let chatMessage of chatMessages">
-                        <strong>{{chatMessage.sender_id}}</strong>
+                        <strong>{{chatMessage.userName}}</strong>
                         {{chatMessage.message}}
                      </li> 
                  </ul>
@@ -20,7 +20,7 @@
         <form (ngSubmit)="sendMessage(sendForm)" #sendForm="ngForm">
             <div class="char-send row">
                 <div class="col-2">
-                    <input type="text" class="form-control" name="user" id="input-user" ngModel>
+                    <input type="text" class="form-control" name="sender_id" id="input-user" ngModel>
                 </div>
                 <div class="col-8">
                     <input type="text" class="form-control" name="message" id="input-message" ngModel>   

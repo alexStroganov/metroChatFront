@@ -1,8 +1,9 @@
 export interface ChatMessageDto {
+  //  userName: string;
     sender_id: number;
     //user: string;
     message: string;
-    line_id: number;
+    lineId: number;
 
     // constructor(sender_id: number, message: string, line_id: number) {
     //     this.sender_id = 1;
